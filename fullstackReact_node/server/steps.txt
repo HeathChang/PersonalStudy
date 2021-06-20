@@ -1,6 +1,11 @@
+21-06-19
 만약 js 파일이 변경될때, heroku open 하면 에러 발생
 항상 git에서 
 1) git add .
 2) git commit -m "이름"
 3) git push heroku master 해주고
 4) heroku open 할것 
+//////////////////////////
+21-06-21
+http://localhost:5000/auth/google 로 들어갈 시, uri mismatch라고 뜨는 이유.
+→ 지정된 uri가 아니기 떄문에 (보안의 문제로 막음. 해결을 위해서는 redirect Page를 5000/auth/google을 해줘야함.)
