@@ -9,3 +9,5 @@
 21-06-21
 http://localhost:5000/auth/google 로 들어갈 시, uri mismatch라고 뜨는 이유.
 → 지정된 uri가 아니기 떄문에 (보안의 문제로 막음. 해결을 위해서는 redirect Page를 5000/auth/google을 해줘야함.)
+→ 추가시 : Cannot GET /auth/google/callback 뜰수 있는데, routeHandler 가 없기 때문
+→ 무한로딩: 아직 request에 대한 명령이 없기때문 (이때, accessToken 출력)
