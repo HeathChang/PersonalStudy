@@ -11,3 +11,28 @@ http://localhost:5000/auth/google 로 들어갈 시, uri mismatch라고 뜨는 �
 → 지정된 uri가 아니기 떄문에 (보안의 문제로 막음. 해결을 위해서는 redirect Page를 5000/auth/google을 해줘야함.)
 → 추가시 : Cannot GET /auth/google/callback 뜰수 있는데, routeHandler 가 없기 때문
 → 무한로딩: 아직 request에 대한 명령이 없기때문 (이때, accessToken 출력)
+
+//////////////////////////
+21-6-23
+[1] When specified, "proxy" in package.json must be a string.
+[1] Instead, the type of "proxy" was "object".
+[1] Either remove "proxy" from package.json, or make it a string.
+→CRA v2 (advanced configuration: using OBJECT):
+
+Step:
+1) npm i --save http-proxy-middleware
+2) Remove the entries from package.json
+    {
+        "proxy": {
+          "/auth/google": {
+            "target": "http://localhost:5000"
+          }
+        }
+    }
+3) create a setup file for your proxy. You should name it setupProxy.js in your src folder
+    const proxy = require('http-proxy-middleware');
+    module.exports = function(app) {
+        app.use(proxy('/auth/google', 
+            { target: 'http://localhost:5000/' }
+        ));
+    }        
