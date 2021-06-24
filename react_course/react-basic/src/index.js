@@ -5,9 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App /> //APP의 내용을
-  </React.StrictMode>,
+    <App />,  
   document.getElementById('root') //어디에다 보여줄것인지 (id가 root인 아이)
 );
 
