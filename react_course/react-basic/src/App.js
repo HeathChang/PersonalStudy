@@ -3,32 +3,19 @@ import { useState } from 'react';
 
 
 function App() {
-  const[text,setText]= useState('Heath'); //initial: Heath를 text에 담고, 업데이트 할때 setText 사용
-  const onSubmit=(text)=>{
-    alert("submitted");
+  const [username,setUsername]=useState('')
+  const [password,setPassword]=useState('')
+  const onSubmit=(event)=>{
+  console.log(username+"\t"+password);
+  event.preventDefault(); //form은 항상 페이지가 넘어가기 떄문
   }
-  const onKeyup=(event)=>{
-    if(event.keyCode===13){
-      onSubmit();
-    }
-  }
-  const updateText= ()=>{
-    //text = 'Coder';
-    setText("Coder");
-    console.log(text);
-    //document.getElementById("text").innerHTML=text; → 기존 JS에서 사용 방식
-  }
-  console.log(text);
-  
   return (
     <div className="App">
-      <input onKeyUp={onKeyup}/>
-      <button onClick={()=>{
-        onSubmit();
-      }}>Submit</button>
-      <br/> <br/>
-      <span /*id="text"→ 기존 JS에서 사용 방식 */> {text} </span>
-      <button onClick={updateText}> Update </button>
+      <form onSubmit={onSubmit}>
+      <input placeholder="Username" value={username} onChange={(e)=>{setUsername(e.target.value)}}/>
+      <input placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/> <br/>
+      <button type="submit">Login</button>
+      </form>
     </div>
   );
 }
