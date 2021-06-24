@@ -1,15 +1,24 @@
-//렌더링 될 때마다 특정 작업을 수행하도록 설정 →useEffect
-import './App.css';
-import React,{ useEffect, useState } from 'react';
-import Counter from './components/Counter';
+import React, { useEffect, useState } from 'react';
 
 function App() {
-
+  const [condition,setCondition] = useState(false);
+  const toggle=()=>{
+    setCondition(!condition)
+  }
+  useEffect(()=>{
+    console.log(condition);
+  })
+  const renderCondition = condition //?
+  ? "True"
+  : "False"
   return (
     <div className="App">
       <h1>Heath Chang</h1>
-      <Counter/>
-    </div>
+      <div>
+      {renderCondition}
+      </div>
+      <button onClick={toggle}>Toggle </button>
+      </div>
   );
 }
 
