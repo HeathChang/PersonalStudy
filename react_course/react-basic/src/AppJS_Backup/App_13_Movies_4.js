@@ -4,20 +4,26 @@ import Movie from './components/Movie'
 import MovieForm from './components/MovieForm';
 
 function App() {
-  const [movies, setMovies] = useState([]);
-
-  const removeMovie=(id)=>{
-    setMovies(movies.filter(movie=>{
-      return movie.id != id;
-    }))
+  const [movies, setMovies] = useState([    
+      { title: "Heath Chang 1",
+        year: 2001  
+      },
+      { title: "Heath Chang 2",
+        year: 2002  
+      },
+      { title: "Heath Chang 3",
+        year: 2003 
+      }
+    ])
+  const removeMovie=()=>{
+    
   }
-  const renderMovies = movies.length
-  ? movies.map(movie=>{
+  const renderMovies = movies.map(movie=>{
     return(
-      <Movie movie={movie} key={movie.id} removeMovie={removeMovie}/>
+      <Movie movie={movie} key={movie.title} removeMovie={removeMovie}/>
     )
-  })
-  : "추가된 영화가 없습니다. ";
+  });
+
   const addMovie=(movie)=>{
     //movies.push() 화면 변화 X: const 배열은 변화한다고 reRendering 되지 않음.  (state아님)
     setMovies([
