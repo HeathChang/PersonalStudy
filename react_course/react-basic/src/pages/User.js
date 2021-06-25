@@ -1,24 +1,36 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserList from '../components/UserList';
-import { useParams } from 'react-router';
-const User=()=>{
-  const {id} = useParams();
-  const[users,setUsers] = useState(null);
-  useEffect(()=>{
-    axios.get('https://jsonplaceholder.typicode.com/users/'+id)
-    .then(response=>{
-      setUsers(response.data);
-    })
-  },[])
-  useEffect(()=>{
-    console.log(users);
-  },[users])
+import Spinner from '../components/Spinner';
+import { useParams } from 'react-router-dom';
 
-  return(
-    <>
-      <h1>Users info </h1>
-    </>
-  )
-}
+const User = () => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const { id } = useParams();
+
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/users/' + id)
+            .then(response => {
+                setUser(response.data);
+                setLoading(false);
+            });
+    }, []);
+
+    const userDetail = loading ? <Spinner /> : (
+        <div>
+            <div>{user.name}</div>
+            <div>{user.email}</div>
+            <div>{user.phone}</div>
+        </div>
+    )
+    
+    return (
+        <>
+            <h1>User 정보</h1>
+            {userDetail}
+        </>
+    );
+};
+
 export default User;
