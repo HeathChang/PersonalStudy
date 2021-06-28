@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const db_info =require("./databaseInfo");
+
 module.exports = {
   init: function () {
       return mysql.createConnection(db_info);
