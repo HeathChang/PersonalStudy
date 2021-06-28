@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+var express = require('express');
+var app = express();
+var db_config = require('../config/database.js');
+var conn = db_config.init();
+var bodyParser = require('body-parser');
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+db_config.connect(conn);
 
-export default App;
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : false}));
+
+app.get('/', function (req, res) {
+    res.send('ROOT');
+});
+
+
+
+app.listen(3000, () => console.log('Server is running on port 3000...'));
