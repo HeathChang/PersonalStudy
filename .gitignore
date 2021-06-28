@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+#file Updated
+fullstackReact_node/server_b
+
 # Log file
 *.log
 
@@ -23,6 +26,7 @@
 #node
 node_modules
 dev.js
+databaseInfo.js
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
